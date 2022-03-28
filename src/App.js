@@ -26,12 +26,19 @@ function App() {
       render: (completed) =>
         completed ? <CheckOutlined /> : <CloseOutlined />,
     },
+    {
+      title: "تگ ها",
+      key: "tags",
+      dataIndex: "tags",
+    },
   ];
+
   const todoData = [
     {
       row: "1",
       text: "این اولین تکست است",
       completed: "",
+      tags: ["شرکت 1"],
     },
     {
       row: "2",
@@ -42,6 +49,7 @@ function App() {
       row: "3",
       text: "این سومین تکست است",
       completed: "",
+      tags: ["شرکت 3"],
     },
     {
       row: "4",
@@ -54,7 +62,13 @@ function App() {
     <div className="App">
       <Header />
       <Main />
-      <MyTable columns={todosColummns} data={todoData} pagination={false} />
+      <MyTable
+        columns={todosColummns}
+        data={todoData}
+        pagination={false}
+        loading={false}
+      />
+
       <Footer />
 
       {/* <header className="App-header">
