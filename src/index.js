@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "antd/dist/antd.css";
 import { ConfigProvider } from "antd";
+import "./fonts/iranyekanwebboldfanum.ttf";
 
 ReactDOM.render(
   <React.StrictMode>
