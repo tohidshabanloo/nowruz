@@ -1,0 +1,19 @@
+.link {
+  background: #00bf6f;
+  bottom: 0px;
+  color: Black;
+  position: fixed;
+  left: 50%;
+  width: 200px;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px 8px 0px 0px;
+  border: 2px solid white;
+}
+.a {
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}

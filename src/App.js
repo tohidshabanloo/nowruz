@@ -1,10 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Header from "./components/Header/Header";
+import Main from "./components/Main/Main";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Header />
+      <Main />
+      <Footer />
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>در حال راه اندازی</p>
         توسط
@@ -16,7 +22,7 @@ function App() {
         >
           توحید شعبانلو
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }
