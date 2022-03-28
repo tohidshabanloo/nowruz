@@ -54,7 +54,7 @@ function App() {
     <div className="App">
       <Header />
       <Main />
-      <MyTable columns={todosColummns} data={todoData} />
+      <MyTable columns={todosColummns} data={todoData} pagination={false} />
       <Footer />
 
       {/* <header className="App-header">
