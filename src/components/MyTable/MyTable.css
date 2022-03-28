@@ -3,5 +3,6 @@
 
 .ant-table-container {
   margin: 10px 10px;
-  border: 2px solid rgb(216, 216, 216);
+  border: 5px solid rgb(216, 216, 216);
+  border-radius: 20px;
 }
