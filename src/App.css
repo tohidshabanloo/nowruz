@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   font-family: iranyekanwebboldfanum;
+  background-color: white;
+  height: 100vh;
 }
 
 .App-logo {

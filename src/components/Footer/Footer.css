@@ -17,3 +17,6 @@
   color: white;
   font-weight: bold;
 }
+.a:hover {
+  color: rgb(190, 4, 13);
+}

@@ -1,4 +1,13 @@
 .main {
-  margin: 20px 20px;
+  margin: 100px 10px;
+  padding: 100px 0;
   border: 2px solid #eee;
+}
+
+.openmodal {
+  border: none;
+  background-color: aquamarine;
+  padding: 10px 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
