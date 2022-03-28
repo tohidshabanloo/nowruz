@@ -1,8 +1,9 @@
 .main {
-  margin: 100px 10px;
-  padding: 100px 0;
+  margin: 10px 10px;
+  padding: 10px 0;
   border: 2px solid #eee;
 }
+
 
 .openmodal {
   border: none;
