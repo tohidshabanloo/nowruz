@@ -4,7 +4,7 @@ import MyModal from "../MyModal";
 import { useState } from "react";
 
 const Main = () => {
-  const [showModal, setShowModal] = useState("false");
+  const [showModal, setShowModal] = useState(false);
 
   const handleOk = () => {
     setShowModal(false);
