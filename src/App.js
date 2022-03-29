@@ -1,6 +1,9 @@
 import logo from "./logo.svg";
 import { CheckOutlined } from "@ant-design/icons";
 import { CloseOutlined } from "@ant-design/icons";
+import { EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
+
 import "./App.css";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
@@ -8,11 +11,31 @@ import Footer from "./components/Footer/Footer";
 import MyTable from "./components/MyTable/MyTable";
 
 function App() {
+  const editAndDelete = () => {
+    return (
+      <div>
+        {" "}
+        <EditOutlined />
+        <DeleteOutlined />
+      </div>
+    );
+  };
+
   const todosColummns = [
     {
-      title: "ردیف",
+      title: "شناسه",
       dataIndex: "row",
       key: "row",
+    },
+    {
+      title: " شناسه کاربر",
+      dataIndex: "row",
+      key: "row",
+    },
+    {
+      title: "عنوان",
+      dataIndex: "body",
+      key: "body",
     },
     {
       title: "متن",
@@ -20,39 +43,45 @@ function App() {
       key: "text",
     },
     {
-      title: "وضعیت",
+      title: "عملیات",
       dataIndex: "completed",
       key: "completed",
       render: (completed) =>
-        completed ? <CheckOutlined /> : <CloseOutlined />,
-    },
-    {
-      title: "تگ ها",
-      key: "tags",
-      dataIndex: "tags",
+        completed ? (
+          <div>
+            {" "}
+            <EditOutlined />
+            <DeleteOutlined />
+          </div>
+        ) : (
+          <DeleteOutlined />
+        ),
     },
   ];
 
   const todoData = [
     {
       row: "1",
+      body: "این اولین عنوان است",
       text: "این اولین تکست است",
       completed: "",
-      tags: ["شرکت 1"],
     },
     {
       row: "2",
+      body: "این دومین عنوان است",
       text: "این دومین تکست است",
       completed: "ی",
     },
     {
       row: "3",
+      body: "این سومین عنوان است",
       text: "این سومین تکست است",
       completed: "",
       tags: ["شرکت 3"],
     },
     {
       row: "4",
+      body: "این چهارمین عنوان است",
       text: "این چهارمین تکست است",
       completed: "ی",
     },
