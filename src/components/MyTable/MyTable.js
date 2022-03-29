@@ -1,4 +1,4 @@
-import "./MyTable.css";
+import "./MyTable.scss";
 import { Table } from "antd";
 
 const MyTable = ({ columns, data, pagination, loading }) => {

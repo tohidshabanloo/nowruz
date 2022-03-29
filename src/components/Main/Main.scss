@@ -1,0 +1,29 @@
+.main {
+  margin: 30px 10px;
+  padding: 10px 0;
+  border: 5px solid rgb(216, 216, 216);
+  border-radius: 20px;
+  background-color: rgba(216, 191, 216, 0.452);
+}
+.newTask {
+  display: flex;
+  flex-direction: row-reverse;
+
+  .openmodal {
+    margin: 20px 10px 20px 0;
+
+    border: none;
+    padding: 10px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgb(216, 191, 216);
+  }
+
+  button.openmodal {
+    align-self: stretch;
+  }
+  button.openmodal:hover {
+    background-color: rgba(216, 191, 216, 0.808);
+    transition: background 0.3s;
+  }
+}

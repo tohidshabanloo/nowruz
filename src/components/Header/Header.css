@@ -1,5 +1,6 @@
 .header {
-    background-color: #eee;
-    padding: 24px 12px;
-    box-shadow: 0 6px 8px #ccc;
-  }
+  background-color: #eee;
+  padding: 15px 10px;
+  box-shadow: 0 6px 8px #ccc;
+  font-size: 25px;
+}

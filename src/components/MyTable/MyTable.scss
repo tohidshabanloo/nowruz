@@ -1,0 +1,51 @@
+// DESKTOP
+@media only screen and (min-width: 800px) {
+  #root {
+    .App {
+      .App {
+        .ant-table-wrapper {
+          .ant-table {
+            border: none;
+            border-radius: 20px;
+            margin: 50px;
+            padding: 0px;
+          }
+          .ant-table-container {
+            border: 5px solid rgb(216, 216, 216);
+            border-radius: 20px;
+            font-size: 12px;
+            background: none;
+          }
+          .ant-table-tbody {
+            background-color: rgba(216, 191, 216, 0.452);
+          }
+        }
+      }
+    }
+  }
+}
+// MOBILE
+@media only screen and (max-width: 800px) {
+  #root {
+    .App {
+      .App {
+        .ant-table-wrapper {
+          .ant-table {
+            border: none;
+            border-radius: 20px;
+            margin: 10px;
+          }
+          .ant-table-container {
+            border: 5px solid rgb(216, 216, 216);
+            border-radius: 20px;
+            font-size: 8px;
+            background: none;
+          }
+          .ant-table-tbody {
+            background-color: rgba(216, 191, 216, 0.452);
+          }
+        }
+      }
+    }
+  }
+}
