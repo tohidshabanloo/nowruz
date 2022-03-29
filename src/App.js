@@ -11,16 +11,6 @@ import Footer from "./components/Footer/Footer";
 import MyTable from "./components/MyTable/MyTable";
 
 function App() {
-  const editAndDelete = () => {
-    return (
-      <div>
-        {" "}
-        <EditOutlined />
-        <DeleteOutlined />
-      </div>
-    );
-  };
-
   const todosColummns = [
     {
       title: "شناسه",
