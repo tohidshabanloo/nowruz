@@ -1,8 +1,10 @@
 import logo from "./logo.svg";
-import { CheckOutlined } from "@ant-design/icons";
+
 import { CloseOutlined } from "@ant-design/icons";
 import { EditOutlined } from "@ant-design/icons";
 import { DeleteOutlined } from "@ant-design/icons";
+import MyModal from "./components/MyModal/MyModal";
+import { useState } from "react";
 
 import "./App.css";
 import Header from "./components/Header/Header";
@@ -11,6 +13,23 @@ import Footer from "./components/Footer/Footer";
 import MyTable from "./components/MyTable/MyTable";
 
 function App() {
+  const [showDelete, setShowDelete] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+
+  const handleOk = () => {
+    setShowDelete(false);
+  };
+  const handleCancel = () => {
+    setShowDelete(false);
+  };
+
+  const handleOkEdit = () => {
+    setShowEdit(false);
+  };
+  const handleCancelEdit = () => {
+    setShowEdit(false);
+  };
+
   const todosColummns = [
     {
       title: "شناسه",
@@ -38,13 +57,46 @@ function App() {
       key: "completed",
       render: (completed) =>
         completed ? (
-          <div>
+          <div className="editdelete">
             {" "}
-            <EditOutlined />
-            <DeleteOutlined />
+            <button className="editbutton">
+              <EditOutlined onClick={() => setShowEdit(true)} />
+            </button>
+            {showEdit ? (
+              <MyModal /*for EDIT*/
+                isModalVisible={showEdit}
+                handleOk={handleOkEdit}
+                handleCancel={handleCancelEdit}
+                title="ویرایش تسک"
+                cancelText="خیر"
+                okText="بله"
+              >
+                <div>آیا از ویرایش خود مطمعن هستید؟</div>
+              </MyModal>
+            ) : null}
+            {showDelete ? (
+              <MyModal /*for DELETE*/
+                isModalVisible={showDelete}
+                handleOk={handleOk}
+                handleCancel={handleCancel}
+                title="حذف تسک"
+                cancelText="خیر"
+                okText="بله"
+              >
+                <div>آیا مطمعن هستید که میخواهید این تسک را حذف کنید؟</div>
+              </MyModal>
+            ) : null}
+            <button
+              className="deletebutton"
+              onClick={() => setShowDelete(true)}
+            >
+              <DeleteOutlined />
+            </button>
           </div>
         ) : (
-          <DeleteOutlined />
+          <div className="cross">
+            <CloseOutlined /> تکمیل نیست
+          </div>
         ),
     },
   ];
