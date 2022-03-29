@@ -2,6 +2,7 @@
   margin: 10px 10px;
   border: 5px solid rgb(216, 216, 216);
   border-radius: 20px;
+  font-size: 12px;
 }
 .ant-table-tbody {
   background-color: rgba(216, 191, 216, 0.452);
