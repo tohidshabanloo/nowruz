@@ -26,6 +26,7 @@ const Main = () => {
           title="این عنوان یک مودال ساده است"
           cancelText="بستن"
           okText="باشه"
+          keyboard={true}
         >
           <div>این متن مودال است</div>
         </MyModal>

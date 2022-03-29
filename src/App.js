@@ -5,6 +5,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { DeleteOutlined } from "@ant-design/icons";
 import MyModal from "./components/MyModal/MyModal";
 import { useState } from "react";
+import { useRef } from "react";
 
 import "./App.css";
 import Header from "./components/Header/Header";
@@ -68,10 +69,35 @@ function App() {
                 handleOk={handleOkEdit}
                 handleCancel={handleCancelEdit}
                 title="ویرایش تسک"
-                cancelText="خیر"
-                okText="بله"
+                cancelText="انصراف"
+                okText="ثبت"
               >
-                <div>آیا از ویرایش خود مطمعن هستید؟</div>
+                <form>
+                  <div>
+                    نام کاربر :
+                    <input
+                      className="userArea"
+                      type="text"
+                      placeholder="نام کاربر"
+                    />
+                  </div>
+                  <div>
+                    عنوان :
+                    <input
+                      className="titleArea"
+                      type="text"
+                      placeholder="عنوان"
+                    />
+                  </div>
+                  <br />
+                  <div>
+                    متن :
+                    <textarea
+                      className="textArea"
+                      placeholder="متن خود را بنویسید ..."
+                    ></textarea>
+                  </div>
+                </form>
               </MyModal>
             ) : null}
             {showDelete ? (
