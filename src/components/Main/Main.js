@@ -7,15 +7,9 @@ import MyModal from "../MyModal";
 import { CloseOutlined } from "@ant-design/icons";
 import { EditOutlined } from "@ant-design/icons";
 import { DeleteOutlined } from "@ant-design/icons";
+import { Modal } from "antd";
 
 const Main = () => {
-  const [todoList, setTodoList] = useState("");
-
-  const removeTodo = (id) => {
-    const updatedTodos = addTodoUTT.filter((item) => item.id !== id);
-    setTodoList(updatedTodos);
-  };
-
   // FOR USER
   const [inputValueUser, setInputValueUser] = useState("");
   const [todoListUser, setTodoListUser] = useState([]);
@@ -26,7 +20,7 @@ const Main = () => {
   const [inputValueTitle, setInputValueTitle] = useState("");
   const [todoListTitle, setTodoListTitle] = useState([]);
 
-  // FOR TEXT
+  // FOR ADD ALL3
   const addTodoUTT = () => {
     if (
       !inputValueUser.length ||
@@ -49,6 +43,9 @@ const Main = () => {
     setInputValueTitle("");
     setTodoListText(updatedTodoList);
     setInputValueText("");
+    setShowAdd(false);
+    setShowEdit(false);
+    setShowDelete(false);
   };
 
   const [showAdd, setShowAdd] = useState(false);
