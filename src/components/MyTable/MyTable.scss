@@ -10,6 +10,10 @@
             margin: 50px;
             padding: 0px;
           }
+          .ant-table-cell {
+            padding: 10px 0px 10px 0px;
+            text-align: center;
+          }
           .ant-table-container {
             border: 5px solid rgb(216, 216, 216);
             border-radius: 20px;
@@ -34,6 +38,10 @@
             border: none;
             border-radius: 20px;
             margin: 10px;
+          }
+          .ant-table-cell {
+            padding: 10px 10px 10px 10px;
+            text-align: center;
           }
           .ant-table-container {
             border: 5px solid rgb(216, 216, 216);
