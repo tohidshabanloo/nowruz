@@ -1,24 +1,43 @@
 import "./Main.scss";
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
+import { Modal } from "antd";
 
 import MyTable from "../MyTable/MyTable";
 import MyModal from "../MyModal";
 import { CloseOutlined } from "@ant-design/icons";
 import { EditOutlined } from "@ant-design/icons";
 import { DeleteOutlined } from "@ant-design/icons";
-import { Modal } from "antd";
 
 const Main = () => {
+  const warning = ({ keyboard }) => {
+    Modal.warning({
+      title: "خطا",
+      content: "تمامی فیلدها باید پر شوند",
+    });
+  };
+
+  const [todoList, setTodoList] = useState(""); /*STATE TODOLIST*/
+  const handleCompelete = (id) => {
+    const updatedTodos = todoList.map((item) =>
+      item.id === id ? { ...item, completed: !item.completed } : item
+    );
+    setTodoList(updatedTodos);
+  };
+
+  const removeTodo = (id) => {
+    const updatedTodos = todoList.filter((item) => item.id !== id);
+    setTodoList(updatedTodos);
+  };
   // FOR USER
   const [inputValueUser, setInputValueUser] = useState("");
   const [todoListUser, setTodoListUser] = useState([]);
-  // FOR TEXT
-  const [inputValueText, setInputValueText] = useState("");
-  const [todoListText, setTodoListText] = useState([]);
   // FOR TITLE
   const [inputValueTitle, setInputValueTitle] = useState("");
   const [todoListTitle, setTodoListTitle] = useState([]);
+  // FOR TEXT
+  const [inputValueText, setInputValueText] = useState("");
+  const [todoListText, setTodoListText] = useState([]);
 
   // FOR ADD ALL3
   const addTodoUTT = () => {
@@ -26,41 +45,40 @@ const Main = () => {
       !inputValueUser.length ||
       !inputValueTitle.length ||
       !inputValueText.length
-    )
-      return; /*اگه اینپوت خالی بود همینجا وایستا!*/
-    const newTodo = {
-      id: uuid(),
-      user: inputValueUser,
-      title: inputValueTitle,
-      text: inputValueText,
-      completed: true,
-    };
-    const updatedTodoList = [...todoListText, newTodo];
+    ) {
+      warning("");
 
-    setTodoListUser(updatedTodoList);
-    setInputValueUser("");
-    setTodoListTitle(updatedTodoList);
-    setInputValueTitle("");
-    setTodoListText(updatedTodoList);
-    setInputValueText("");
-    setShowAdd(false);
-    setShowEdit(false);
-    setShowDelete(false);
+      /*اگه اینپوت خالی بود همینجا وایستا!*/
+    } else {
+      const newTodo = {
+        id: uuid(),
+        user: inputValueUser,
+        title: inputValueTitle,
+        text: inputValueText,
+        completed: true,
+      };
+      const updatedTodoList = [...todoListText, newTodo];
+
+      setTodoListUser(updatedTodoList);
+      setInputValueUser("");
+      setTodoListTitle(updatedTodoList);
+      setInputValueTitle("");
+      setTodoListText(updatedTodoList);
+      setInputValueText("");
+      setShowAdd(false);
+      setShowEdit(false);
+      setShowDelete(false);
+    }
   };
 
   const [showAdd, setShowAdd] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
-  const handleOkAdd = () => {
-    setShowAdd(false);
-  };
   const handleCancelAdd = () => {
     setShowAdd(false);
   };
-  const handleOkEdit = () => {
-    setShowEdit(false);
-  };
+
   const handleCancelEdit = () => {
     setShowEdit(false);
   };
@@ -197,7 +215,7 @@ const Main = () => {
                 <input
                   className="userArea"
                   type="text"
-                  placeholder="نام کاربر"
+                  placeholder="اصغر"
                   value={inputValueUser}
                   onChange={(e) => setInputValueUser(e.target.value)}
                 />
@@ -207,7 +225,7 @@ const Main = () => {
                 <input
                   className="titleArea"
                   type="text"
-                  placeholder="عنوان"
+                  placeholder="پروژه نوروز"
                   value={inputValueTitle}
                   onChange={(e) => setInputValueTitle(e.target.value)}
                 />
@@ -219,7 +237,7 @@ const Main = () => {
                   value={inputValueText}
                   onChange={(e) => setInputValueText(e.target.value)}
                   type="text"
-                  placeholder="تسک جدید بنویسید ..."
+                  placeholder="انجام این پروژه به پاره شدن اعزاء بدم منجر شد ..."
                   className="textArea"
                 ></textarea>
               </div>
@@ -227,9 +245,10 @@ const Main = () => {
           </MyModal>
         ) : null}
       </div>
+      <></>
       <MyTable
         columns={todosColummns}
-        data={todoListUser}
+        data={todoListText}
         pagination={false}
         loading={false}
       />

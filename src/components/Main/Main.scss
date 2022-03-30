@@ -1,29 +1,54 @@
-.main {
-  margin: 30px 10px;
-  padding: 10px 0;
-  border: 5px solid rgb(216, 216, 216);
-  border-radius: 20px;
-  background-color: rgba(216, 191, 216, 0.452);
-}
-.newTask {
-  display: flex;
-  flex-direction: row-reverse;
+/* DESKTOP */
+@media only screen and (min-width: 800px) {
+  .main {
+    margin: 30px 10px;
+    padding: 10px 0;
+    border: 5px solid rgb(216, 216, 216);
+    border-radius: 20px;
+    background-color: rgba(216, 191, 216, 0.452);
+  }
+  .newTask {
+    display: flex;
+    flex-direction: row-reverse;
 
+    .openmodal {
+      margin: 20px 50px -40px 0;
+
+      border: none;
+      padding: 10px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: rgb(255, 255, 136);
+    }
+
+    button.openmodal {
+      align-self: stretch;
+    }
+    button.openmodal:hover {
+      background-color: rgba(253, 253, 31, 0.945);
+      transition: background 0.3s;
+    }
+  }
+
+  .ant-modal-confirm-body-wrapper {
+    text-align: right;
+    font-family: iranyekanwebboldfanum;
+  }
+}
+
+/* MOBILE */
+@media only screen and (max-width: 800px) {
   .openmodal {
-    margin: 20px 10px 20px 0;
+    margin: 20px 5px 0px 5px;
 
     border: none;
     padding: 10px 10px;
     border-radius: 8px;
     cursor: pointer;
-    background-color: rgb(216, 191, 216);
-  }
-
-  button.openmodal {
-    align-self: stretch;
+    background-color: rgb(255, 255, 136);
   }
   button.openmodal:hover {
-    background-color: rgba(216, 191, 216, 0.808);
+    background-color: rgba(253, 253, 31, 0.945);
     transition: background 0.3s;
   }
 }
