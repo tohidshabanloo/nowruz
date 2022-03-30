@@ -9,6 +9,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { DeleteOutlined } from "@ant-design/icons";
 
 const Main = () => {
+
   // FOR USER
   const [inputValueUser, setInputValueUser] = useState("");
   const [todoListUser, setTodoListUser] = useState([]);
@@ -163,33 +164,6 @@ const Main = () => {
     },
   ];
 
-  const todoData = [
-    {
-      row: "1",
-      body: "این اولین عنوان است",
-      text: "این اولین تکست است",
-      completed: "",
-    },
-    {
-      row: "2",
-      body: "این دومین عنوان است",
-      text: "این دومین تکست است",
-      completed: "ی",
-    },
-    {
-      row: "3",
-      body: "این سومین عنوان است",
-      text: "این سومین تکست است",
-      completed: "",
-      tags: ["شرکت 3"],
-    },
-    {
-      row: "4",
-      body: "این چهارمین عنوان است",
-      text: "این چهارمین تکست است",
-      completed: "ی",
-    },
-  ];
 
   return (
     <div className="App">

@@ -8,7 +8,7 @@ import TodoList from "./components/TodoList/TodoList";
 import MyTable from "./components/MyTable/MyTable";
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
+  
   return (
     <div className="App">
       <Header />
