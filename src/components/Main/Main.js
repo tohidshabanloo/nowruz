@@ -9,6 +9,12 @@ import { EditOutlined } from "@ant-design/icons";
 import { DeleteOutlined } from "@ant-design/icons";
 
 const Main = () => {
+  const [todoList, setTodoList] = useState("");
+
+  const removeTodo = (id) => {
+    const updatedTodos = addTodoUTT.filter((item) => item.id !== id);
+    setTodoList(updatedTodos);
+  };
 
   // FOR USER
   const [inputValueUser, setInputValueUser] = useState("");
@@ -103,11 +109,12 @@ const Main = () => {
             {showEdit ? (
               <MyModal /*for EDIT*/
                 isModalVisible={showEdit}
-                handleOk={handleOkEdit}
+                handleOk={addTodoUTT}
                 handleCancel={handleCancelEdit}
                 title="ویرایش تسک"
                 cancelText="انصراف"
                 okText="ثبت"
+                keyboard={true}
               >
                 <form>
                   <div>
@@ -116,6 +123,8 @@ const Main = () => {
                       className="userArea"
                       type="text"
                       placeholder="نام کاربر"
+                      value={inputValueUser}
+                      onChange={(e) => setInputValueUser(e.target.value)}
                     />
                   </div>
                   <div>
@@ -124,14 +133,19 @@ const Main = () => {
                       className="titleArea"
                       type="text"
                       placeholder="عنوان"
+                      value={inputValueTitle}
+                      onChange={(e) => setInputValueTitle(e.target.value)}
                     />
                   </div>
                   <br />
                   <div>
                     متن :
                     <textarea
+                      value={inputValueText}
+                      onChange={(e) => setInputValueText(e.target.value)}
+                      type="text"
+                      placeholder="تسک جدید بنویسید ..."
                       className="textArea"
-                      placeholder="متن خود را بنویسید ..."
                     ></textarea>
                   </div>
                 </form>
@@ -164,14 +178,12 @@ const Main = () => {
     },
   ];
 
-
   return (
     <div className="App">
       <div className="newTask">
         <button onClick={() => setShowAdd(true)} className="openmodal">
           ایجاد جدید +
         </button>
-
         {showAdd ? (
           <MyModal /*for ADD*/
             isModalVisible={showAdd}
