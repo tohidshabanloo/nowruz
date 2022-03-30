@@ -1,13 +1,49 @@
 import "./Main.scss";
+import { v4 as uuid } from "uuid";
+import { useState } from "react";
+
 import MyTable from "../MyTable/MyTable";
 import MyModal from "../MyModal";
 import { CloseOutlined } from "@ant-design/icons";
 import { EditOutlined } from "@ant-design/icons";
 import { DeleteOutlined } from "@ant-design/icons";
 
-import { useState } from "react";
-
 const Main = () => {
+  // FOR USER
+  const [inputValueUser, setInputValueUser] = useState("");
+  const [todoListUser, setTodoListUser] = useState([]);
+  // FOR TEXT
+  const [inputValueText, setInputValueText] = useState("");
+  const [todoListText, setTodoListText] = useState([]);
+  // FOR TITLE
+  const [inputValueTitle, setInputValueTitle] = useState("");
+  const [todoListTitle, setTodoListTitle] = useState([]);
+
+  // FOR TEXT
+  const addTodoUTT = () => {
+    if (
+      !inputValueUser.length ||
+      !inputValueTitle.length ||
+      !inputValueText.length
+    )
+      return; /*اگه اینپوت خالی بود همینجا وایستا!*/
+    const newTodo = {
+      id: uuid(),
+      user: inputValueUser,
+      title: inputValueTitle,
+      text: inputValueText,
+      completed: true,
+    };
+    const updatedTodoList = [...todoListText, newTodo];
+
+    setTodoListUser(updatedTodoList);
+    setInputValueUser("");
+    setTodoListTitle(updatedTodoList);
+    setInputValueTitle("");
+    setTodoListText(updatedTodoList);
+    setInputValueText("");
+  };
+
   const [showAdd, setShowAdd] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -33,19 +69,19 @@ const Main = () => {
 
   const todosColummns = [
     {
-      title: "شناسه",
-      dataIndex: "row",
-      key: "row",
+      title: "شناسه (UUID)",
+      dataIndex: "id",
+      key: "id",
     },
     {
       title: " شناسه کاربر",
-      dataIndex: "row",
-      key: "row",
+      dataIndex: "user",
+      key: "user",
     },
     {
       title: "عنوان",
-      dataIndex: "body",
-      key: "body",
+      dataIndex: "title",
+      key: "title",
     },
     {
       title: "متن",
@@ -161,10 +197,11 @@ const Main = () => {
         <button onClick={() => setShowAdd(true)} className="openmodal">
           ایجاد جدید +
         </button>
+
         {showAdd ? (
           <MyModal /*for ADD*/
             isModalVisible={showAdd}
-            handleOk={handleOkAdd}
+            handleOk={addTodoUTT}
             handleCancel={handleCancelAdd}
             title="ایجاد تسک جدید"
             cancelText="انصراف"
@@ -178,18 +215,29 @@ const Main = () => {
                   className="userArea"
                   type="text"
                   placeholder="نام کاربر"
+                  value={inputValueUser}
+                  onChange={(e) => setInputValueUser(e.target.value)}
                 />
               </div>
               <div>
                 عنوان :
-                <input className="titleArea" type="text" placeholder="عنوان" />
+                <input
+                  className="titleArea"
+                  type="text"
+                  placeholder="عنوان"
+                  value={inputValueTitle}
+                  onChange={(e) => setInputValueTitle(e.target.value)}
+                />
               </div>
               <br />
               <div>
                 متن :
                 <textarea
+                  value={inputValueText}
+                  onChange={(e) => setInputValueText(e.target.value)}
+                  type="text"
+                  placeholder="تسک جدید بنویسید ..."
                   className="textArea"
-                  placeholder="متن خود را بنویسید ..."
                 ></textarea>
               </div>
             </form>
@@ -198,7 +246,7 @@ const Main = () => {
       </div>
       <MyTable
         columns={todosColummns}
-        data={todoData}
+        data={todoListUser}
         pagination={false}
         loading={false}
       />

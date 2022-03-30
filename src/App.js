@@ -5,6 +5,7 @@ import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
 import AddTodo from "./components/AddTodo/AddTodo";
 import TodoList from "./components/TodoList/TodoList";
+import MyTable from "./components/MyTable/MyTable";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -12,8 +13,8 @@ function App() {
     <div className="App">
       <Header />
       <Main />
-      <AddTodo todoList={todoList} setTodoList={setTodoList} />
-      <TodoList todoList={todoList} setTodoList={setTodoList} />
+      {/* <AddTodo todoList={todoList} setTodoList={setTodoList} /> */}
+      {/* <TodoList todoList={todoList} setTodoList={setTodoList} /> */}
       <Footer />
       {/* 3:54 */}
 
