@@ -1,0 +1,46 @@
+.todosList {
+  width: 70%;
+  margin: auto;
+  padding: 24px;
+  border-radius: 4px;
+  box-shadow: 0 0 6px #ccc;
+  text-align: left;
+  background-color: #00bf6f;
+  direction: rtl;
+
+  .todo {
+    height: fit-content;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+    padding: 20px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    .removeIcon {
+      position: absolute;
+      top: 0px;
+      right: 5px;
+      cursor: pointer;
+    }
+  }
+  .todospan {
+    align-self: stretch;
+  }
+
+  button {
+    align-items: stretch;
+    background-color: rgb(255, 7, 7);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 10px;
+    margin-right: 10px;
+    font-family: iranyekanwebboldfanum;
+  }
+}
