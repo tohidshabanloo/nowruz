@@ -237,7 +237,7 @@ const Main = () => {
                   value={inputValueText}
                   onChange={(e) => setInputValueText(e.target.value)}
                   type="text"
-                  placeholder="انجام این پروژه به پاره شدن اعزاء بدم منجر شد ..."
+                  placeholder="انجام این پروژه به پاره شدن اعزاء بدنم منجر شد ..."
                   className="textArea"
                 ></textarea>
               </div>
