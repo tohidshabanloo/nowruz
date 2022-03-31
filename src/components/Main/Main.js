@@ -59,11 +59,43 @@ const Main = () => {
       const updatedTodoList = [...todoListText, newTodo];
 
       setTodoListUser(updatedTodoList);
-      setInputValueUser("");
+      // setInputValueUser("");
       setTodoListTitle(updatedTodoList);
-      setInputValueTitle("");
+      // setInputValueTitle("");
       setTodoListText(updatedTodoList);
-      setInputValueText("");
+      // setInputValueText("");
+      setShowAdd(false);
+      setShowEdit(false);
+      setShowDelete(false);
+    }
+  };
+
+  const editTodoUTT = () => {
+    if (
+      !inputValueUser.length ||
+      !inputValueTitle.length ||
+      !inputValueText.length
+    ) {
+      warning("");
+      setShowEdit(false);
+
+      /*اگه اینپوت خالی بود همینجا وایستا!*/
+    } else {
+      const newTodo = {
+        id: uuid(),
+        user: inputValueUser,
+        title: inputValueTitle,
+        text: inputValueText,
+        completed: true,
+      };
+      const updatedTodoList = [...todoListText, newTodo];
+
+      setTodoListUser(updatedTodoList);
+      // setInputValueUser("");
+      setTodoListTitle(updatedTodoList);
+      // setInputValueTitle("");
+      setTodoListText(updatedTodoList);
+      // setInputValueText("");
       setShowAdd(false);
       setShowEdit(false);
       setShowDelete(false);
@@ -79,26 +111,32 @@ const Main = () => {
   };
 
   const handleOkEdit = () => {
-    banner();
+    // banner();
     setShowEdit(false);
   };
   const handleCancelEdit = () => {
     setShowEdit(false);
   };
-  const handleOkDelete = (uuid) => {
-    // const updateDelete = addTodoUTT.filter((uuid) => uuid() !== uuid);
-    // setInputValueUser(updateDelete);
-    // setInputValueTitle(updateDelete);
-    // setInputValueText(updateDelete);
+  const handleOkDelete = () => {
+    if (
+      inputValueUser.length ||
+      inputValueTitle.length ||
+      inputValueText.length
+    ) {
+      setShowEdit(true);
 
-    setShowDelete(false);
-    banner();
+      setInputValueUser("");
+      setInputValueTitle("");
+      setTodoListText("");
+
+      // banner();
+    }
   };
   const handleCancelDelete = () => {
     setShowDelete(false);
   };
 
-  const todosColummns = [
+  let todosColummns = [
     {
       title: "شناسه (UUID)",
       dataIndex: "id",
@@ -205,7 +243,15 @@ const Main = () => {
   return (
     <div className="App">
       <div className="newTask">
-        <button onClick={() => setShowAdd(true)} className="openmodal">
+        <button
+          onClick={() =>
+            setShowAdd(true) &
+            setInputValueUser("") &
+            setInputValueTitle("") &
+            setInputValueText("")
+          }
+          className="openmodal"
+        >
           ایجاد جدید +
         </button>
         {showAdd ? (
