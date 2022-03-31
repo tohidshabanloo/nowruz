@@ -13,22 +13,20 @@ const Main = () => {
   const warning = ({ keyboard }) => {
     Modal.warning({
       title: "خطا",
+      okText: "|: باشه بابا ",
       content: "تمامی فیلدها باید پر شوند",
     });
   };
 
-  const [todoList, setTodoList] = useState(""); /*STATE TODOLIST*/
-  const handleCompelete = (id) => {
-    const updatedTodos = todoList.map((item) =>
-      item.id === id ? { ...item, completed: !item.completed } : item
-    );
-    setTodoList(updatedTodos);
+  const banner = () => {
+    Modal.warning({
+      title: "کمک",
+      okText: "نمیخوام",
+      content:
+        " هنوز این قسمت برنامه کامل نشده،اگه راه حلی برای این مشکل داری با من در تماس باش :) 09122773788 ",
+    });
   };
 
-  const removeTodo = (id) => {
-    const updatedTodos = todoList.filter((item) => item.id !== id);
-    setTodoList(updatedTodos);
-  };
   // FOR USER
   const [inputValueUser, setInputValueUser] = useState("");
   const [todoListUser, setTodoListUser] = useState([]);
@@ -47,6 +45,7 @@ const Main = () => {
       !inputValueText.length
     ) {
       warning("");
+      setShowAdd(false);
 
       /*اگه اینپوت خالی بود همینجا وایستا!*/
     } else {
@@ -79,11 +78,21 @@ const Main = () => {
     setShowAdd(false);
   };
 
+  const handleOkEdit = () => {
+    banner();
+    setShowEdit(false);
+  };
   const handleCancelEdit = () => {
     setShowEdit(false);
   };
-  const handleOkDelete = () => {
+  const handleOkDelete = (uuid) => {
+    // const updateDelete = addTodoUTT.filter((uuid) => uuid() !== uuid);
+    // setInputValueUser(updateDelete);
+    // setInputValueTitle(updateDelete);
+    // setInputValueText(updateDelete);
+
     setShowDelete(false);
+    banner();
   };
   const handleCancelDelete = () => {
     setShowDelete(false);
@@ -124,7 +133,7 @@ const Main = () => {
             {showEdit ? (
               <MyModal /*for EDIT*/
                 isModalVisible={showEdit}
-                handleOk={addTodoUTT}
+                handleOk={handleOkEdit}
                 handleCancel={handleCancelEdit}
                 title="ویرایش تسک"
                 cancelText="انصراف"
