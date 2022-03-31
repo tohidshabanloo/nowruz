@@ -70,38 +70,6 @@ const Main = () => {
     }
   };
 
-  const editTodoUTT = () => {
-    if (
-      !inputValueUser.length ||
-      !inputValueTitle.length ||
-      !inputValueText.length
-    ) {
-      warning("");
-      setShowEdit(false);
-
-      /*اگه اینپوت خالی بود همینجا وایستا!*/
-    } else {
-      const newTodo = {
-        id: uuid(),
-        user: inputValueUser,
-        title: inputValueTitle,
-        text: inputValueText,
-        completed: true,
-      };
-      const updatedTodoList = [...todoListText, newTodo];
-
-      setTodoListUser(updatedTodoList);
-      // setInputValueUser("");
-      setTodoListTitle(updatedTodoList);
-      // setInputValueTitle("");
-      setTodoListText(updatedTodoList);
-      // setInputValueText("");
-      setShowAdd(false);
-      setShowEdit(false);
-      setShowDelete(false);
-    }
-  };
-
   const [showAdd, setShowAdd] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -111,7 +79,7 @@ const Main = () => {
   };
 
   const handleOkEdit = () => {
-    // banner();
+    banner();
     setShowEdit(false);
   };
   const handleCancelEdit = () => {
