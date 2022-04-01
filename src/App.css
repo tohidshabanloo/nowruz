@@ -85,7 +85,18 @@
     transition: background 0.3s;
     font-size: 10px;
   }
-
+  .userAreaEdit {
+    width: 100%;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    text-align: right;
+    
+    
+    
+    background-color: #f8f8f8;
+    font-size: 14px;
+    resize: none;
+  }
   .userArea {
     width: 30%;
     margin-right: 5px;

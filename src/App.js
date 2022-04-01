@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import logo from "react";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
@@ -16,7 +17,6 @@ function App() {
       {/* <AddTodo todoList={todoList} setTodoList={setTodoList} /> */}
       {/* <TodoList todoList={todoList} setTodoList={setTodoList} /> */}
       <Footer />
-      {/* 3:54 */}
 
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

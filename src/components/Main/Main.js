@@ -56,13 +56,15 @@ const Main = () => {
         text: inputValueText,
         completed: true,
       };
-      const updatedTodoList = [...todoListText, newTodo];
+      const updatedTodoListText = [...todoListText, newTodo];
+      const updatedTodoListUser = [...todoListUser, newTodo];
+      const updatedTodoListTitle = [...todoListTitle, newTodo];
 
-      setTodoListUser(updatedTodoList);
+      setTodoListUser(updatedTodoListUser);
       // setInputValueUser("");
-      setTodoListTitle(updatedTodoList);
+      setTodoListTitle(updatedTodoListTitle);
       // setInputValueTitle("");
-      setTodoListText(updatedTodoList);
+      setTodoListText(updatedTodoListText);
       // setInputValueText("");
       setShowAdd(false);
       setShowEdit(false);
@@ -147,16 +149,20 @@ const Main = () => {
                 keyboard={true}
               >
                 <form>
-                  <div>
-                    نام کاربر :
-                    <input
-                      className="userArea"
-                      type="text"
-                      placeholder="نام کاربر"
-                      value={inputValueUser}
-                      onChange={(e) => setInputValueUser(e.target.value)}
-                    />
+                  <div className="userAreaEdit">
+                    <form action="/action_page.php">
+                      <label for="users">کاربر مورد نظر را انتخاب کنید :</label>
+
+                      <select name="users">
+                        {todoListUser.map((item) => (
+                          <option key={item.id} value={inputValueUser}>
+                            {item.user}
+                          </option>
+                        ))}
+                      </select>
+                    </form>
                   </div>
+
                   <div>
                     عنوان :
                     <input
@@ -222,6 +228,7 @@ const Main = () => {
         >
           ایجاد جدید +
         </button>
+
         {showAdd ? (
           <MyModal /*for ADD*/
             isModalVisible={showAdd}
