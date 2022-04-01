@@ -93,7 +93,18 @@ const Main = () => {
       inputValueTitle.length ||
       inputValueText.length
     ) {
-      setShowEdit(true);
+      const handleDelete = (id) => {
+        const updatedTodos = todoListUser.map((item) =>
+          item.id === id ? { ...item, completed: true } : item
+        );
+        setTodoListUser(updatedTodos);
+        setTodoListTitle(updatedTodos);
+        setTodoListText(updatedTodos);
+      };
+
+      setShowDelete(false);
+
+      // setShowEdit(true);
 
       setInputValueUser("");
       setInputValueTitle("");
@@ -102,11 +113,12 @@ const Main = () => {
       // banner();
     }
   };
+
   const handleCancelDelete = () => {
     setShowDelete(false);
   };
 
-  let todosColummns = [
+  const todosColummns = [
     {
       title: "شناسه (UUID)",
       dataIndex: "id",
@@ -141,7 +153,7 @@ const Main = () => {
             {showEdit ? (
               <MyModal /*for EDIT*/
                 isModalVisible={showEdit}
-                handleOk={handleOkEdit}
+                handleOk={addTodoUTT}
                 handleCancel={handleCancelEdit}
                 title="ویرایش تسک"
                 cancelText="انصراف"
@@ -154,9 +166,9 @@ const Main = () => {
                       <label for="users">کاربر مورد نظر را انتخاب کنید :</label>
 
                       <select name="users">
-                        {todoListUser.map((item) => (
+                        {todoListUser.map((item, i) => (
                           <option key={item.id} value={inputValueUser}>
-                            {item.user}
+                            {i + 1}: {item.user}
                           </option>
                         ))}
                       </select>
