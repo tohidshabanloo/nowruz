@@ -71,6 +71,39 @@ const Main = () => {
       setShowDelete(false);
     }
   };
+  const addNewUTT = () => {
+    if (
+      !inputValueUser.length ||
+      !inputValueTitle.length ||
+      !inputValueText.length
+    ) {
+      warning("");
+      setShowAdd(false);
+
+      /*اگه اینپوت خالی بود همینجا وایستا!*/
+    } else {
+      const newTodo = {
+        id: uuid(),
+        user: inputValueUser,
+        title: inputValueTitle,
+        text: inputValueText,
+        completed: true,
+      };
+
+      const updatedTodoListText = [newTodo];
+
+      const updatedTodoListTitle = [newTodo];
+
+      // setInputValueUser("");
+      setTodoListTitle(updatedTodoListTitle);
+      setInputValueTitle("");
+      setTodoListText(updatedTodoListText);
+      setInputValueText("");
+      setShowAdd(false);
+      setShowEdit(false);
+      setShowDelete(false);
+    }
+  };
 
   const [showAdd, setShowAdd] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -83,35 +116,28 @@ const Main = () => {
   const handleOkEdit = () => {
     banner();
     setShowEdit(false);
+    setInputValueTitle("");
   };
   const handleCancelEdit = () => {
     setShowEdit(false);
   };
   const handleOkDelete = () => {
-    if (
-      inputValueUser.length ||
-      inputValueTitle.length ||
-      inputValueText.length
-    ) {
-      const handleDelete = (id) => {
-        const updatedTodos = todoListUser.map((item) =>
-          item.id === id ? { ...item, completed: true } : item
-        );
-        setTodoListUser(updatedTodos);
-        setTodoListTitle(updatedTodos);
-        setTodoListText(updatedTodos);
-      };
+    const removeTodo = (id) => {
+      const updatedTodos = todoListUser.filter((item) => item.id !== id);
+      setTodoListUser(updatedTodos);
+      setTodoListText(updatedTodos);
+      setTodoListTitle(updatedTodos);
+    };
+    removeTodo();
+    setShowDelete(false);
 
-      setShowDelete(false);
+    // setShowEdit(true);
 
-      // setShowEdit(true);
+    setInputValueUser("");
+    setInputValueTitle("");
+    setTodoListText("");
 
-      setInputValueUser("");
-      setInputValueTitle("");
-      setTodoListText("");
-
-      // banner();
-    }
+    // banner();
   };
 
   const handleCancelDelete = () => {
@@ -153,7 +179,7 @@ const Main = () => {
             {showEdit ? (
               <MyModal /*for EDIT*/
                 isModalVisible={showEdit}
-                handleOk={addTodoUTT}
+                handleOk={addNewUTT}
                 handleCancel={handleCancelEdit}
                 title="ویرایش تسک"
                 cancelText="انصراف"
@@ -211,12 +237,15 @@ const Main = () => {
                 <div>آیا مطمعن هستید که میخواهید این تسک را حذف کنید؟</div>
               </MyModal>
             ) : null}
+            
             <button
+              
               className="deletebutton"
               onClick={() => setShowDelete(true)}
             >
               <DeleteOutlined />
             </button>
+            
           </div>
         ) : (
           <div className="takmilnist">

@@ -10,6 +10,7 @@ const MyModal = ({
   cancelText,
   okText,
   keyboard,
+  onOk
 }) => {
   return (
     <Modal
@@ -21,6 +22,7 @@ const MyModal = ({
       cancelText={cancelText}
       okText={okText}
       keyboard={keyboard}
+      
     >
       {children}
     </Modal>
