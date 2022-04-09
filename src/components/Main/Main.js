@@ -91,7 +91,6 @@ const Main = () => {
       };
 
       const updatedTodoListText = [newTodo];
-
       const updatedTodoListTitle = [newTodo];
 
       // setInputValueUser("");
@@ -103,6 +102,34 @@ const Main = () => {
       setShowEdit(false);
       setShowDelete(false);
     }
+  };
+  const deleteUTT = () => {
+    const removeTodo = (id) => {
+      const updatedTodos = todoListUser.filter((item) => item.id !== id);
+      const newTodo = {
+        id: uuid(),
+        user: inputValueUser,
+        title: inputValueTitle,
+        text: inputValueText,
+        completed: true,
+      };
+
+      const updatedTodoListUser = [newTodo];
+      const updatedTodoListText = [newTodo];
+      const updatedTodoListTitle = [newTodo];
+
+      // setInputValueUser("");
+
+      setTodoListUser(updatedTodos);
+      setInputValueUser("");
+      setTodoListTitle(updatedTodos);
+      setInputValueTitle("");
+      setTodoListText(updatedTodos);
+      setInputValueText("");
+      setShowAdd(false);
+      setShowEdit(false);
+      setShowDelete(false);
+    };
   };
 
   const [showAdd, setShowAdd] = useState(false);
@@ -121,22 +148,21 @@ const Main = () => {
   const handleCancelEdit = () => {
     setShowEdit(false);
   };
-  const handleOkDelete = () => {
+  const handleOkDelete = (id) => {
     const removeTodo = (id) => {
       const updatedTodos = todoListUser.filter((item) => item.id !== id);
-      setTodoListUser(updatedTodos);
-      setTodoListText(updatedTodos);
-      setTodoListTitle(updatedTodos);
-    };
-    removeTodo();
-    setShowDelete(false);
+      // setTodoListUser(updatedTodos);
+      // setTodoListText(updatedTodos);
+      // setTodoListTitle(updatedTodos);
 
-    // setShowEdit(true);
+      // setShowEdit(true);
+    };
 
     setInputValueUser("");
     setInputValueTitle("");
     setTodoListText("");
-
+    setShowDelete(false);
+    //  removeTodo();
     // banner();
   };
 
@@ -228,7 +254,7 @@ const Main = () => {
             {showDelete ? (
               <MyModal /*for DELETE*/
                 isModalVisible={showDelete}
-                handleOk={handleOkDelete}
+                handleOk={deleteUTT}
                 handleCancel={handleCancelDelete}
                 title="حذف تسک"
                 cancelText="خیر"
@@ -237,15 +263,12 @@ const Main = () => {
                 <div>آیا مطمعن هستید که میخواهید این تسک را حذف کنید؟</div>
               </MyModal>
             ) : null}
-            
             <button
-              
               className="deletebutton"
               onClick={() => setShowDelete(true)}
             >
               <DeleteOutlined />
             </button>
-            
           </div>
         ) : (
           <div className="takmilnist">
