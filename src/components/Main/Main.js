@@ -2,7 +2,6 @@ import "./Main.scss";
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
 import { Modal } from "antd";
-
 import MyTable from "../MyTable/MyTable";
 import MyModal from "../MyModal";
 import { CloseOutlined } from "@ant-design/icons";
@@ -56,9 +55,13 @@ const Main = () => {
         text: inputValueText,
         completed: true,
       };
-      const updatedTodoListText = [...todoListText, newTodo];
-      const updatedTodoListUser = [...todoListUser, newTodo];
-      const updatedTodoListTitle = [...todoListTitle, newTodo];
+
+      const updatedTodoListText = [...todoListText, { ...newTodo, id: uuid() }];
+      const updatedTodoListUser = [...todoListUser, { ...newTodo, id: uuid() }];
+      const updatedTodoListTitle = [
+        ...todoListTitle,
+        { ...newTodo, id: uuid() },
+      ];
 
       setTodoListUser(updatedTodoListUser);
       // setInputValueUser("");
@@ -103,34 +106,6 @@ const Main = () => {
       setShowDelete(false);
     }
   };
-  const deleteUTT = () => {
-    const removeTodo = (id) => {
-      const updatedTodos = todoListUser.filter((item) => item.id !== id);
-      const newTodo = {
-        id: uuid(),
-        user: inputValueUser,
-        title: inputValueTitle,
-        text: inputValueText,
-        completed: true,
-      };
-
-      const updatedTodoListUser = [newTodo];
-      const updatedTodoListText = [newTodo];
-      const updatedTodoListTitle = [newTodo];
-
-      // setInputValueUser("");
-
-      setTodoListUser(updatedTodos);
-      setInputValueUser("");
-      setTodoListTitle(updatedTodos);
-      setInputValueTitle("");
-      setTodoListText(updatedTodos);
-      setInputValueText("");
-      setShowAdd(false);
-      setShowEdit(false);
-      setShowDelete(false);
-    };
-  };
 
   const [showAdd, setShowAdd] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -148,22 +123,16 @@ const Main = () => {
   const handleCancelEdit = () => {
     setShowEdit(false);
   };
+
   const handleOkDelete = (id) => {
-    const removeTodo = (id) => {
-      const updatedTodos = todoListUser.filter((item) => item.id !== id);
-      // setTodoListUser(updatedTodos);
-      // setTodoListText(updatedTodos);
-      // setTodoListTitle(updatedTodos);
+    let finalData =
+      todoListUser.filter((todoListUser) => todoListUser.id !== id) ||
+      todoListTitle.filter((todoListTitle) => todoListTitle.id !== id) ||
+      todoListText.filter((todoListText) => todoListText.id !== id);
 
-      // setShowEdit(true);
-    };
-
-    setInputValueUser("");
-    setInputValueTitle("");
-    setTodoListText("");
-    setShowDelete(false);
-    //  removeTodo();
-    // banner();
+    setTodoListUser(finalData);
+    setTodoListTitle(finalData);
+    setTodoListText(finalData);
   };
 
   const handleCancelDelete = () => {
@@ -254,7 +223,11 @@ const Main = () => {
             {showDelete ? (
               <MyModal /*for DELETE*/
                 isModalVisible={showDelete}
-                handleOk={deleteUTT}
+                handleOk={() =>
+                  handleOkDelete(
+                    todoListUser?.id || todoListTitle?.id || todoListText?.id
+                  )
+                }
                 handleCancel={handleCancelDelete}
                 title="حذف تسک"
                 cancelText="خیر"
